@@ -3,11 +3,14 @@ import history from 'connect-history-api-fallback'
 import path from 'path'
 import type { Connect } from 'types/connect'
 import { createDebugger } from '../../utils'
+import type { ViteDevServer } from '../..'
 
 export function spaFallbackMiddleware(
-  root: string
+  root: string,
+  server: ViteDevServer
 ): Connect.NextHandleFunction {
   const historySpaFallbackMiddleware = history({
+    disableDotRule: server.config.server.disableDotRule,
     logger: createDebugger('vite:spa-fallback'),
     // support /dir/ without explicit index.html
     rewrites: [

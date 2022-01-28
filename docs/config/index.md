@@ -655,6 +655,20 @@ export default defineConfig({
 })
 ```
 
+### server.disableDotRule
+
+- **Type:** `boolean`
+
+Option to allow non-static requests contain dots.
+
+```js
+export default defineConfig({
+  server: {
+    disableDotRule: true
+  }
+})
+```
+
 ## Build Options
 
 ### build.target

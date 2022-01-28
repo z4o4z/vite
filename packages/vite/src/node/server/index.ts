@@ -102,6 +102,12 @@ export interface ServerOptions extends CommonServerOptions {
    * @default true
    */
   preTransformRequests?: boolean
+  /**
+   * Option to allow non-static requests contain dots
+   *
+   * @default false
+   */
+  disableDotRule?: boolean
 }
 
 export interface ResolvedServerOptions extends ServerOptions {
@@ -538,7 +544,7 @@ export async function createServer(
 
   // spa fallback
   if (!middlewareMode || middlewareMode === 'html') {
-    middlewares.use(spaFallbackMiddleware(root))
+    middlewares.use(spaFallbackMiddleware(root, server))
   }
 
   // run post config hooks
